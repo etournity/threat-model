@@ -430,7 +430,7 @@
                   "position": 0.5,
                   "attrs": {
                     "text": {
-                      "text": "API Request",
+                      "text": "API Request\n(Cloudflare)",
                       "font-weight": "400",
                       "font-size": "small"
                     }
@@ -482,7 +482,7 @@
                   "position": 0.5,
                   "attrs": {
                     "text": {
-                      "text": "API Response",
+                      "text": "API Request\n(Cloudflare)",
                       "font-weight": "400",
                       "font-size": "small"
                     }
