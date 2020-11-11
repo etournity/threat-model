@@ -1,3 +1,6 @@
+// (c) 2020 Henry Gressmann
+// This code is licensed under MIT license (see LICENSE.txt for details)
+
 const model = require("./ThreatDragonModels/Etournity Threat Model/Etournity Threat Model.json");
 
 const types = {
