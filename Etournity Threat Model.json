@@ -1,0 +1,942 @@
+{
+  "summary": {
+    "title": "Etournity Threat Model",
+    "owner": "Henry Gressmann"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "Threat Model",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0,
+        "diagramJson": {
+          "cells": [
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 89,
+                "y": 240
+              },
+              "angle": 0,
+              "id": "a81c8265-55c9-4b22-80c7-52abc1b3ccfd",
+              "z": 1,
+              "hasOpenThreats": false,
+              "outOfScope": true,
+              "reasonOutOfScope": "Netlify handles our static and dynamically generated files and has no access to sensitive data.  We however trust them not to change our client-side code.",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "Netlify"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 53,
+                "y": 29
+              },
+              "angle": 0,
+              "id": "ca1a0390-cdc8-4b41-8be2-0fcc13ee6c6d",
+              "z": 2,
+              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "title": "CSRF Attacks",
+                  "description": "Malicious parties could forge requests to include cookies with our authentication tokens in requests to our API.",
+                  "mitigation": "Our backend is using a separate domain without access to the cookies and CORS headers only allowing the frontend's domain. Further, all API actions are required to only use application/json body, which mitigates XHR-based CSRF Attacks."
+                },
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "title": "XSS Attacks",
+                  "type": "Elevation of privilege",
+                  "description": "",
+                  "mitigation": "React protects us from many forms of XSS attacks and we're avoiding react's `dangerouslySetInnerHTML` feature.\nFurther, we employ very strict Content Security Policy.\n\nOne Scenario for XSS would be hijacking Googles Fonts or Tag-Manager services since these are the only allowed external scripts. These however are out of scope."
+                },
+                {
+                  "status": "Mitigated",
+                  "severity": "Low",
+                  "title": "Leaking Referrer Information",
+                  "type": "Information disclosure",
+                  "mitigation": "We utilize the Referrer-Policy header to completely prevent the browser from leaking information to websites we link to."
+                }
+              ],
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Browser"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "ca1a0390-cdc8-4b41-8be2-0fcc13ee6c6d"
+              },
+              "target": {
+                "id": "a81c8265-55c9-4b22-80c7-52abc1b3ccfd"
+              },
+              "vertices": [
+                {
+                  "x": 74,
+                  "y": 160
+                }
+              ],
+              "id": "2d0f2e13-3206-4df2-901e-b7bf7e380b6a",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Web Request",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 3,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "protocol": "HTTP/S",
+              "isPublicNetwork": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "ca1a0390-cdc8-4b41-8be2-0fcc13ee6c6d"
+              },
+              "target": {
+                "id": "a81c8265-55c9-4b22-80c7-52abc1b3ccfd"
+              },
+              "vertices": [
+                {
+                  "x": 193,
+                  "y": 171
+                }
+              ],
+              "id": "b1120df4-052f-440f-80a6-e580602c3282",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Web Response",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 4,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTP/S",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 55,
+                "y": 219
+              },
+              "target": {
+                "x": 214,
+                "y": 212
+              },
+              "vertices": [
+                {
+                  "x": 139,
+                  "y": 189
+                }
+              ],
+              "id": "a54522b6-da7c-4d1c-bcf4-b235d6913783",
+              "z": 5,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 12,
+                "y": 434
+              },
+              "angle": 0,
+              "id": "ee116aa5-f5f2-4f5a-aa3f-441d7113bd93",
+              "z": 6,
+              "hasOpenThreats": false,
+              "isSigned": false,
+              "outOfScope": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "Web Application Config"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "ee116aa5-f5f2-4f5a-aa3f-441d7113bd93"
+              },
+              "target": {
+                "id": "a81c8265-55c9-4b22-80c7-52abc1b3ccfd"
+              },
+              "vertices": [],
+              "id": "95d84939-804a-49f4-ae6a-47f8848c4883",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Read web app config",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 7,
+              "hasOpenThreats": false,
+              "outOfScope": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isOutOfScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 332,
+                "y": 219
+              },
+              "angle": 0,
+              "id": "34203083-a11b-4677-90d6-17a05c6afa50",
+              "z": 8,
+              "hasOpenThreats": false,
+              "privilegeLevel": "",
+              "outOfScope": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "Cloudflare"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "ca1a0390-cdc8-4b41-8be2-0fcc13ee6c6d"
+              },
+              "target": {
+                "id": "34203083-a11b-4677-90d6-17a05c6afa50"
+              },
+              "vertices": [
+                {
+                  "x": 268,
+                  "y": 132
+                }
+              ],
+              "id": "ded7e0fe-2bc4-47e2-a221-9d760ff22670",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.45340395655457977,
+                    "offset": 26.143445358393148
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "API Request",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTP/S",
+              "outOfScope": false,
+              "threats": [
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "title": "Insecure SSL Versions/Cyphers and SSL Certificate Security",
+                  "type": "Tampering",
+                  "mitigation": "- We have configured Cloudflare to prevent Clients using insecure cyphers and TLS Versions below TLS 1.2 from connecting.\n\n- We utilize the Expect-CT Header and have Certificate Monitoring setup to prevent and monitor the issuing of unauthorized SSL certificates. \n\n- Further, we add HTTP Strict Transport Security (HSTS) headers (Strict-Transport-Security) to our requests  to mitigate downgrade and session hijacking attacks."
+                }
+              ],
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "34203083-a11b-4677-90d6-17a05c6afa50"
+              },
+              "target": {
+                "id": "ca1a0390-cdc8-4b41-8be2-0fcc13ee6c6d"
+              },
+              "vertices": [
+                {
+                  "x": 294,
+                  "y": 102
+                }
+              ],
+              "id": "424aca2d-87c9-4895-b140-272e941ee5c4",
+              "labels": [
+                {
+                  "position": {
+                    "distance": 0.4672798781038012,
+                    "offset": 13.928066319966279
+                  },
+                  "attrs": {
+                    "text": {
+                      "text": "API Response",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 11,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTP/S",
+              "outOfScope": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 405,
+                "y": 385
+              },
+              "target": {
+                "x": 532,
+                "y": 239
+              },
+              "vertices": [
+                {
+                  "x": 494,
+                  "y": 315
+                }
+              ],
+              "id": "c06376d4-4413-4715-89a4-72aec20a4e47",
+              "z": 12,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "34203083-a11b-4677-90d6-17a05c6afa50"
+              },
+              "target": {
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+              },
+              "vertices": [
+                {
+                  "x": 511,
+                  "y": 309
+                }
+              ],
+              "id": "4ed5597a-cb97-4971-91f2-abad50d3c5cd",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "API Request",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 13,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTP/S",
+              "threats": [
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "title": "Unencrypted Origin Traffic",
+                  "description": "While the connection to cloudflare was encrypted, the request was sent from there over an unencryped connection to our servers.",
+                  "mitigation": "We've deployed SSL Certificates signed by cloudflare to our API Servers to encrypt the connection."
+                }
+              ],
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+              },
+              "target": {
+                "id": "34203083-a11b-4677-90d6-17a05c6afa50"
+              },
+              "vertices": [
+                {
+                  "x": 483,
+                  "y": 343
+                }
+              ],
+              "id": "44bde292-7a3c-41ec-a15b-839b8467987a",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "API Response",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 14,
+              "hasOpenThreats": false,
+              "protocol": "HTTP/S",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 542,
+                "y": 349
+              },
+              "angle": 0,
+              "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec",
+              "z": 15,
+              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "title": "High-Complexity Queries",
+                  "description": "A GraphQL query can take arbitrarily many actions, and thus take an arbitrarily large amount of server resources",
+                  "mitigation": "We limit GraphQL queries to a specific cost. Each action has an assigned amount of \"points\" and requests taking up too many of these get rejected."
+                },
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "title": "Inconsistent Authorization Checks",
+                  "description": "There are multiple different paths to access data using a graphql query and this can lead to instances where users can request information they shouldn't have access to.\n\nThis has led to the possible exposure of sensitive user information in early version of the platform.",
+                  "mitigation": "This has been mitigated by using graphql-shield combined with our own rbac implementation to protect resources on a per-field basis."
+                },
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "title": "Components with Known Vulnerabilities",
+                  "type": "Tampering",
+                  "mitigation": "- We are using dependabot for automated dependency updates when packages we are using have a known voulnabillity\n- We pin all dependencies to a specific version and use a lockfile to mitigate issues like NPM libraries getting updated to include malicious code.",
+                  "description": "From OWASP.org:\nComponents, such as libraries, frameworks, and other software modules, run with the same privileges as the application. If a vulnerable component is exploited, such an attack can facilitate serious data loss or server takeover. Applications and APIs using components with known vulnerabilities may undermine application defenses and enable various attacks and impacts."
+                },
+                {
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "title": "Docker Security Issues",
+                  "type": "Elevation of privilege",
+                  "mitigation": "- We mitigate most common Docker Security issues by using Amazon Elastic Container Service, a managed docker solution that handles security updates for our docker runtime and protects from process escalation outside the containers. \n- Our docker images are also hosted on AWSs container registry and can only be updated through our CI-workflow\n- We use a minimal, trusted base image for our images to decrease the attack vector by not including unneccecary software.\n\n\n-"
+                },
+                {
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "title": "Basic Denial of Service",
+                  "type": "Denial of service",
+                  "description": "Basic Denial of Service attacks, like flooding our server with hundreds of requests (This doesn't include brute force attacks like password guessing, since this is currently only handled over OAuth by Discord)",
+                  "mitigation": "- We have a basic, in memory rate limiter setup, which limits on a per-ip basis to 10 requests per second (This mostly to protect us from misconfigured clients)\n- We utilize Cloudflare as a reverse-proxy, which mitigates large-scale Denial of Service Attacks for us"
+                }
+              ],
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "API Server"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 437,
+                "y": 12
+              },
+              "angle": 0,
+              "id": "5e28a511-182c-4914-9059-cb559adb8679",
+              "z": 16,
+              "hasOpenThreats": false,
+              "outOfScope": true,
+              "reasonOutOfScope": "External Service, Authentication issues here are out of our control",
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "Discord\n(OAuth)"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 296,
+                "y": 268
+              },
+              "target": {
+                "x": 457,
+                "y": 204
+              },
+              "vertices": [
+                {
+                  "x": 318,
+                  "y": 166
+                },
+                {
+                  "x": 403,
+                  "y": 165
+                }
+              ],
+              "id": "56dbc3d6-a21d-4d1e-859c-120696c2abfc",
+              "z": 17,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "ca1a0390-cdc8-4b41-8be2-0fcc13ee6c6d"
+              },
+              "target": {
+                "id": "5e28a511-182c-4914-9059-cb559adb8679"
+              },
+              "vertices": [
+                {
+                  "x": 316,
+                  "y": 40
+                }
+              ],
+              "id": "c7906e70-ee36-45ff-8921-ba98ee95fc12",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Login Request",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 18,
+              "hasOpenThreats": false,
+              "protocol": "HTTP/S",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "5e28a511-182c-4914-9059-cb559adb8679"
+              },
+              "target": {
+                "id": "34203083-a11b-4677-90d6-17a05c6afa50"
+              },
+              "vertices": [
+                {
+                  "x": 431,
+                  "y": 159
+                }
+              ],
+              "id": "f6732bef-42c4-4a81-b575-70b92bdcbbd4",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Login Redirect",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 19,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTP/S",
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 374,
+                "y": 548
+              },
+              "angle": 0,
+              "id": "253304af-a254-4479-a581-3bb7dde4ad7e",
+              "z": 20,
+              "hasOpenThreats": false,
+              "storesCredentials": true,
+              "isEncrypted": true,
+              "outOfScope": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "AWS Secrets Manager"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "253304af-a254-4479-a581-3bb7dde4ad7e"
+              },
+              "target": {
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+              },
+              "vertices": [
+                {
+                  "x": 468,
+                  "y": 475
+                }
+              ],
+              "id": "25b95ddc-c62d-4b53-9524-2275c7805fef",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Read Server Config",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 21,
+              "hasOpenThreats": false,
+              "outOfScope": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isOutOfScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 635,
+                "y": 548
+              },
+              "angle": 0,
+              "id": "2121cf1d-63c1-414d-859f-68b1952e8f8b",
+              "z": 22,
+              "hasOpenThreats": false,
+              "storesCredentials": true,
+              "outOfScope": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "Amazon Relational\nDatabase Service"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 398,
+                "y": 496
+              },
+              "target": {
+                "x": 527,
+                "y": 503
+              },
+              "vertices": [],
+              "id": "fd579d4c-3a06-4e9d-bcc2-1af30f64e433",
+              "z": 23,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "2121cf1d-63c1-414d-859f-68b1952e8f8b"
+              },
+              "target": {
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+              },
+              "vertices": [
+                {
+                  "x": 693,
+                  "y": 482
+                }
+              ],
+              "id": "6923c21a-4c3f-49c4-983b-be3fe1614cdd",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Query Results",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 25,
+              "hasOpenThreats": false,
+              "isEncrypted": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "smooth": true,
+              "source": {
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+              },
+              "target": {
+                "id": "2121cf1d-63c1-414d-859f-68b1952e8f8b"
+              },
+              "vertices": [
+                {
+                  "x": 638,
+                  "y": 514
+                }
+              ],
+              "id": "72cb3316-35c1-4372-b089-b90e31c5b8de",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Queries",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 26,
+              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "status": "Mitigated",
+                  "severity": "High",
+                  "title": "SQL Injections",
+                  "type": "Elevation of privilege",
+                  "description": "A request might be malformed and an attacker’s hostile data could trick the interpreter into executing unintended commands or accessing data without proper authorization.",
+                  "mitigation": "Our query builder (prisma) automatically escapes all inputs (we trust it to do this correctly), and we don't use raw SQL statements."
+                }
+              ],
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "smooth": true,
+              "source": {
+                "x": 754,
+                "y": 507
+              },
+              "target": {
+                "x": 605,
+                "y": 541
+              },
+              "vertices": [
+                {
+                  "x": 672,
+                  "y": 511
+                }
+              ],
+              "id": "51cc8da0-9535-45fe-b4f2-a199a1a4ce57",
+              "z": 27,
+              "attrs": {}
+            }
+          ]
+        },
+        "size": {
+          "height": 1087,
+          "width": 1035
+        }
+      }
+    ]
+  }
+}
