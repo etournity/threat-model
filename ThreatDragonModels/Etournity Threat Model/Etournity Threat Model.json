@@ -1,0 +1,16 @@
+{
+  "summary": {
+    "title": "Etournity Threat Model",
+    "owner": "Henry Gressmann"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "Main System",
+        "thumbnail": "./public/content/images/thumbnail.jpg",
+        "id": 0
+      }
+    ]
+  }
+}
