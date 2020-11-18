@@ -1,7 +1,7 @@
 # Overview
 
 This repo contains etournity's main threat-model, which has been created using OWASP's threatdragon program.
-You can view and exit the interactive version in their [web app](https://threatdragon.org/#/threatmodel/report/etournity/threat-model/main/Etournity%20Threat%20Model).
+You can view and edit the interactive version in their [web app](https://threatdragon.org/#/threatmodel/report/etournity/threat-model/main/Etournity%20Threat%20Model).
 
 ![threat model diagram](./threatmodel.png)
 
