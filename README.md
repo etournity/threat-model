@@ -7,7 +7,7 @@ You can view and exit the interactive version in their [web app](https://threatd
 
 # Threats
 
-Below, you can find an overview of the different threats we have identified and mitigated. This list is generated from the output of threatdragon by a small custom script (`generate-report.js`)
+Below, you can find an overview of the different threats we have identified and mitigated. This list is generated from the output of threatdragon using a small custom script @explodingcamera has created (`generate-report.js`)
 
 ## Browser (External Actor)
 
