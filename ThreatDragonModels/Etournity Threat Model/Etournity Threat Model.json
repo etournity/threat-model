@@ -240,7 +240,7 @@
                   "position": 0.5,
                   "attrs": {
                     "text": {
-                      "text": "Read web app config",
+                      "text": "Return web app\nconfig",
                       "font-weight": "400",
                       "font-size": "small"
                     }
@@ -416,12 +416,12 @@
                 "id": "34203083-a11b-4677-90d6-17a05c6afa50"
               },
               "target": {
-                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+                "id": "39eb2232-dec9-4951-9986-9d2cd9903918"
               },
               "vertices": [
                 {
-                  "x": 511,
-                  "y": 309
+                  "x": 527,
+                  "y": 384
                 }
               ],
               "id": "4ed5597a-cb97-4971-91f2-abad50d3c5cd",
@@ -465,17 +465,12 @@
               "type": "tm.Flow",
               "smooth": true,
               "source": {
-                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+                "id": "39eb2232-dec9-4951-9986-9d2cd9903918"
               },
               "target": {
                 "id": "34203083-a11b-4677-90d6-17a05c6afa50"
               },
-              "vertices": [
-                {
-                  "x": 483,
-                  "y": 343
-                }
-              ],
+              "vertices": [],
               "id": "44bde292-7a3c-41ec-a15b-839b8467987a",
               "labels": [
                 {
@@ -510,8 +505,8 @@
                 "height": 100
               },
               "position": {
-                "x": 542,
-                "y": 349
+                "x": 653,
+                "y": 465
               },
               "angle": 0,
               "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec",
@@ -563,7 +558,7 @@
                   "class": "element-shape hasNoOpenThreats isInScope"
                 },
                 "text": {
-                  "text": "API Server"
+                  "text": "API\nServer\n(ECS)"
                 },
                 ".element-text": {
                   "class": "element-text hasNoOpenThreats isInScope"
@@ -714,8 +709,8 @@
                 "height": 80
               },
               "position": {
-                "x": 374,
-                "y": 548
+                "x": 243,
+                "y": 434
               },
               "angle": 0,
               "id": "253304af-a254-4479-a581-3bb7dde4ad7e",
@@ -745,19 +740,14 @@
               "target": {
                 "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
               },
-              "vertices": [
-                {
-                  "x": 468,
-                  "y": 475
-                }
-              ],
+              "vertices": [],
               "id": "25b95ddc-c62d-4b53-9524-2275c7805fef",
               "labels": [
                 {
                   "position": 0.5,
                   "attrs": {
                     "text": {
-                      "text": "Read Server Config",
+                      "text": "Return Server Config",
                       "font-weight": "400",
                       "font-size": "small"
                     }
@@ -783,8 +773,8 @@
                 "height": 80
               },
               "position": {
-                "x": 635,
-                "y": 548
+                "x": 243,
+                "y": 561
               },
               "angle": 0,
               "id": "2121cf1d-63c1-414d-859f-68b1952e8f8b",
@@ -805,22 +795,6 @@
               }
             },
             {
-              "type": "tm.Boundary",
-              "smooth": true,
-              "source": {
-                "x": 398,
-                "y": 496
-              },
-              "target": {
-                "x": 527,
-                "y": 503
-              },
-              "vertices": [],
-              "id": "fd579d4c-3a06-4e9d-bcc2-1af30f64e433",
-              "z": 23,
-              "attrs": {}
-            },
-            {
               "type": "tm.Flow",
               "smooth": true,
               "source": {
@@ -831,8 +805,8 @@
               },
               "vertices": [
                 {
-                  "x": 693,
-                  "y": 482
+                  "x": 577,
+                  "y": 535
                 }
               ],
               "id": "6923c21a-4c3f-49c4-983b-be3fe1614cdd",
@@ -851,6 +825,7 @@
               "z": 25,
               "hasOpenThreats": false,
               "isEncrypted": true,
+              "outOfScope": false,
               "attrs": {
                 ".marker-target": {
                   "class": "marker-target hasNoOpenThreats isInScope"
@@ -864,42 +839,36 @@
               "type": "tm.Flow",
               "smooth": true,
               "source": {
-                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
+                "id": "39eb2232-dec9-4951-9986-9d2cd9903918"
               },
               "target": {
-                "id": "2121cf1d-63c1-414d-859f-68b1952e8f8b"
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
               },
               "vertices": [
                 {
-                  "x": 638,
-                  "y": 514
+                  "x": 644,
+                  "y": 404
                 }
               ],
-              "id": "72cb3316-35c1-4372-b089-b90e31c5b8de",
+              "id": "cefc82a0-2c01-4831-b203-14fac1f821c5",
               "labels": [
                 {
-                  "position": 0.5,
+                  "position": {
+                    "distance": 0.5000014954698453,
+                    "offset": 1.499752127569984
+                  },
                   "attrs": {
                     "text": {
-                      "text": "Queries",
+                      "text": "API Request\n(AWS VPC)",
                       "font-weight": "400",
                       "font-size": "small"
                     }
                   }
                 }
               ],
-              "z": 26,
+              "z": 30,
               "hasOpenThreats": false,
-              "threats": [
-                {
-                  "status": "Mitigated",
-                  "severity": "High",
-                  "title": "SQL Injections",
-                  "type": "Elevation of privilege",
-                  "description": "A request might be malformed and an attacker’s hostile data could trick the interpreter into executing unintended commands or accessing data without proper authorization.",
-                  "mitigation": "Our query builder (prisma) automatically escapes all inputs (we trust it to do this correctly), and we don't use raw SQL statements."
-                }
-              ],
+              "outOfScope": false,
               "attrs": {
                 ".marker-target": {
                   "class": "marker-target hasNoOpenThreats isInScope"
@@ -910,25 +879,71 @@
               }
             },
             {
-              "type": "tm.Boundary",
+              "type": "tm.Process",
+              "size": {
+                "width": 100,
+                "height": 100
+              },
+              "position": {
+                "x": 646,
+                "y": 244
+              },
+              "angle": 0,
+              "id": "39eb2232-dec9-4951-9986-9d2cd9903918",
+              "z": 31,
+              "hasOpenThreats": false,
+              "outOfScope": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isOutOfScope"
+                },
+                "text": {
+                  "text": "EC2 Load\nBalancer"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
               "smooth": true,
               "source": {
-                "x": 754,
-                "y": 507
+                "id": "f1279b82-3f90-46e6-a428-dd5e0e4d3dec"
               },
               "target": {
-                "x": 605,
-                "y": 541
+                "id": "39eb2232-dec9-4951-9986-9d2cd9903918"
               },
               "vertices": [
                 {
-                  "x": 672,
-                  "y": 511
+                  "x": 735,
+                  "y": 397
                 }
               ],
-              "id": "51cc8da0-9535-45fe-b4f2-a199a1a4ce57",
-              "z": 27,
-              "attrs": {}
+              "id": "12acfda8-d6da-49e6-a379-9afff32ac42a",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "API Requests\n(AWS VPC)",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 32,
+              "hasOpenThreats": false,
+              "outOfScope": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
             }
           ]
         },
